@@ -5,6 +5,8 @@ import { HiSwitchHorizontal } from "react-icons/hi";
 import "react-dropdown/style.css";
 import "./App.css";
 
+import { evaluate } from "mathjs";
+
 function App() {
   const [info, setInfo] = useState([]);
   const [input, setInput] = useState(0);
@@ -52,6 +54,17 @@ function App() {
     setTo(temp);
   };
 
+  const evalExpr = (e) => {
+    let value = input;
+    try {
+      let result = evaluate(e.target.value);
+      if (result || result == 0) value = result;
+    } catch {
+    } finally {
+      setInput(value);
+    }
+  };
+
   return (
     <div className="App">
       <div className="heading">
@@ -61,15 +74,9 @@ function App() {
         <div className="left">
           <h3>Amount</h3>
           <input
-            type="number"
+            type="text"
             placeholder="Enter the amount"
-            onChange={(e) => {
-              let value = e.target.value;
-              if (value === "") {
-                value = 0;
-              }
-              setInput(value);
-            }}
+            onChange={(e) => evalExpr(e)}
           />
         </div>
         <div className="middle">
