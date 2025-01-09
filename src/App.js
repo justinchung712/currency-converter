@@ -75,7 +75,7 @@ function App() {
           <h3>Amount</h3>
           <input
             type="text"
-            placeholder="Enter the amount"
+            placeholder="Enter amount"
             onChange={(e) => evalExpr(e)}
           />
         </div>
@@ -92,7 +92,7 @@ function App() {
         </div>
         <div className="switch">
           <HiSwitchHorizontal
-            size="30px"
+            size="23px"
             onClick={() => {
               flip();
             }}
